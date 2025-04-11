@@ -4,6 +4,14 @@
 #include <sqlite3.h>
 #include <iostream>
 
+//зум картинок не работает
+//текст не видемый
+
+
+
+
+
+
 #pragma comment(lib, "sqlite3.lib")
 
 using namespace std;
@@ -22,7 +30,7 @@ int main(cli::array<String^>^ args) {
 	int rc;               
 
 
-	rc = sqlite3_open("bd_MyBooks.db", &db);
+	rc = sqlite3_open("LibraryDatabase.db", &db);
 	if (rc) {
 		cerr << "no open BD: " << sqlite3_errmsg(db) << endl;
 		return 1;
@@ -31,16 +39,16 @@ int main(cli::array<String^>^ args) {
 		cout << "open BD" << endl;
 	}
 
-	const char* sqlCreateTable =
-		"CREATE TABLE IF NOT EXISTS Products ("
-		"id INTEGER PRIMARY KEY AUTOINCREMENT,"
-		"name TEXT NOT NULL,"
-		"description TEXT,"
-		"price REAL"
-		");";
+	//const char* sqlCreateTable =
+	//	"CREATE TABLE IF NOT EXISTS Products ("
+	//	"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+	//	"name TEXT NOT NULL,"
+	//	"description TEXT,"
+	//	"price REAL"
+	//	");";
 	
-	if (rc != SQLITE_OK) {
-		MessageBox::Show(String::Format("Ошибка при создании таблицы {0}"));
-	}
-	Console::WriteLine("Таблица создана (или уже существовала).");
+	//if (rc != SQLITE_OK) {
+	//	MessageBox::Show(String::Format("Ошибка при создании таблицы {0}"));
+	//}
+	//Console::WriteLine("Таблица создана (или уже существовала).");
 }

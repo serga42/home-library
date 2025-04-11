@@ -152,6 +152,9 @@
   <ItemGroup>
     <Image Include="..\img\Books_icon-icons.com_76879.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

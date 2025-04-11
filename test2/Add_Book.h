@@ -50,6 +50,15 @@ namespace test2 {
 
 	private: System::Windows::Forms::TextBox^ txtFilePath;
 	private: System::Windows::Forms::Label^ lblStatus;
+	private: System::Windows::Forms::TextBox^ txtCoverImagePath;
+
+	private: System::Windows::Forms::Button^ btnBrowseCover_Click;
+	private: System::Windows::Forms::PictureBox^ pictureBoxCover;
+	private: System::Windows::Forms::TextBox^ txtTitle;
+
+
+
+
 
 	protected:
 
@@ -74,6 +83,11 @@ namespace test2 {
 			this->btnUpload = (gcnew System::Windows::Forms::Button());
 			this->txtFilePath = (gcnew System::Windows::Forms::TextBox());
 			this->lblStatus = (gcnew System::Windows::Forms::Label());
+			this->txtCoverImagePath = (gcnew System::Windows::Forms::TextBox());
+			this->btnBrowseCover_Click = (gcnew System::Windows::Forms::Button());
+			this->pictureBoxCover = (gcnew System::Windows::Forms::PictureBox());
+			this->txtTitle = (gcnew System::Windows::Forms::TextBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxCover))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// buttonReturnToMain_Click
@@ -92,9 +106,10 @@ namespace test2 {
 			// 
 			// btnBrowse
 			// 
-			this->btnBrowse->Location = System::Drawing::Point(147, 253);
+			this->btnBrowse->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnBrowse->Location = System::Drawing::Point(29, 54);
 			this->btnBrowse->Name = L"btnBrowse";
-			this->btnBrowse->Size = System::Drawing::Size(100, 56);
+			this->btnBrowse->Size = System::Drawing::Size(111, 56);
 			this->btnBrowse->TabIndex = 1;
 			this->btnBrowse->Text = L"выбрать книгу";
 			this->btnBrowse->UseVisualStyleBackColor = true;
@@ -102,7 +117,8 @@ namespace test2 {
 			// 
 			// btnUpload
 			// 
-			this->btnUpload->Location = System::Drawing::Point(310, 252);
+			this->btnUpload->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnUpload->Location = System::Drawing::Point(566, 303);
 			this->btnUpload->Name = L"btnUpload";
 			this->btnUpload->Size = System::Drawing::Size(112, 57);
 			this->btnUpload->TabIndex = 2;
@@ -112,7 +128,7 @@ namespace test2 {
 			// 
 			// txtFilePath
 			// 
-			this->txtFilePath->Location = System::Drawing::Point(120, 132);
+			this->txtFilePath->Location = System::Drawing::Point(197, 60);
 			this->txtFilePath->Multiline = true;
 			this->txtFilePath->Name = L"txtFilePath";
 			this->txtFilePath->ReadOnly = true;
@@ -122,11 +138,49 @@ namespace test2 {
 			// lblStatus
 			// 
 			this->lblStatus->AutoSize = true;
-			this->lblStatus->Location = System::Drawing::Point(529, 222);
+			this->lblStatus->Location = System::Drawing::Point(285, 113);
 			this->lblStatus->Name = L"lblStatus";
 			this->lblStatus->Size = System::Drawing::Size(35, 13);
 			this->lblStatus->TabIndex = 4;
 			this->lblStatus->Text = L"label1";
+			// 
+			// txtCoverImagePath
+			// 
+			this->txtCoverImagePath->Location = System::Drawing::Point(197, 152);
+			this->txtCoverImagePath->Multiline = true;
+			this->txtCoverImagePath->Name = L"txtCoverImagePath";
+			this->txtCoverImagePath->ReadOnly = true;
+			this->txtCoverImagePath->Size = System::Drawing::Size(211, 45);
+			this->txtCoverImagePath->TabIndex = 5;
+			// 
+			// btnBrowseCover_Click
+			// 
+			this->btnBrowseCover_Click->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnBrowseCover_Click->Location = System::Drawing::Point(29, 146);
+			this->btnBrowseCover_Click->Name = L"btnBrowseCover_Click";
+			this->btnBrowseCover_Click->Size = System::Drawing::Size(111, 59);
+			this->btnBrowseCover_Click->TabIndex = 6;
+			this->btnBrowseCover_Click->Text = L"выбрать обложку";
+			this->btnBrowseCover_Click->UseVisualStyleBackColor = true;
+			this->btnBrowseCover_Click->Click += gcnew System::EventHandler(this, &add_Book::btnBrowseCover_Click_Click);
+			// 
+			// pictureBoxCover
+			// 
+			this->pictureBoxCover->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->pictureBoxCover->Cursor = System::Windows::Forms::Cursors::AppStarting;
+			this->pictureBoxCover->Location = System::Drawing::Point(496, 16);
+			this->pictureBoxCover->Name = L"pictureBoxCover";
+			this->pictureBoxCover->Size = System::Drawing::Size(237, 268);
+			this->pictureBoxCover->TabIndex = 7;
+			this->pictureBoxCover->TabStop = false;
+			// 
+			// txtTitle
+			// 
+			this->txtTitle->Location = System::Drawing::Point(197, 235);
+			this->txtTitle->Multiline = true;
+			this->txtTitle->Name = L"txtTitle";
+			this->txtTitle->Size = System::Drawing::Size(211, 45);
+			this->txtTitle->TabIndex = 8;
 			// 
 			// add_Book
 			// 
@@ -134,6 +188,10 @@ namespace test2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::SlateGray;
 			this->ClientSize = System::Drawing::Size(777, 378);
+			this->Controls->Add(this->txtTitle);
+			this->Controls->Add(this->pictureBoxCover);
+			this->Controls->Add(this->btnBrowseCover_Click);
+			this->Controls->Add(this->txtCoverImagePath);
 			this->Controls->Add(this->lblStatus);
 			this->Controls->Add(this->txtFilePath);
 			this->Controls->Add(this->btnUpload);
@@ -142,15 +200,19 @@ namespace test2 {
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"add_Book";
 			this->Text = L"add_Book";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxCover))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	
+	//кнопка возврата на 1 страницу
 	private: System::Void buttonReturnToMain_Click_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 	}
+
+
+	//кнопка добавить книгу
 	private: System::Void btnBrowse_Click(System::Object^ sender, System::EventArgs^ e) {
 		OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog();
 
@@ -161,51 +223,146 @@ namespace test2 {
 			txtFilePath->Text = openFileDialog1->FileName;
 		}
 	}
+
+
+	//кнопка загрузки обложки
+	private: System::Void btnBrowseCover_Click_Click(System::Object^ sender, System::EventArgs^ e) {
+		OpenFileDialog^ openFileDialogCover = gcnew OpenFileDialog();
+
+		openFileDialogCover->Filter = "Image Files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+		openFileDialogCover->Title = "Select a Cover Image";
+
+		if (openFileDialogCover->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			try {
+				String^ imagePath = openFileDialogCover->FileName;
+				txtCoverImagePath->Text = imagePath; // Set the path to the TextBox
+
+				//Load the image into the PictureBox
+				pictureBoxCover->Image = System::Drawing::Image::FromFile(imagePath);  // Use System::Drawing::Image
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show("Ошибка при загрузке изображения: " + ex->Message, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				// Handle the exception (e.g., log it, clear the PictureBox)
+				pictureBoxCover->Image = nullptr; // Clear the PictureBox if loading fails
+			}
+		}
+		else {
+			// If the user cancels the dialog, clear the TextBox and PictureBox (optional)
+			txtCoverImagePath->Text = "";
+			pictureBoxCover->Image = nullptr;
+		}
+	}
+
+
+	//кнопка загрузить книгу в базу даный sqlite (LibraryDatabase.db)
 private: System::Void btnUpload_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Проверка заполнения всех обязательных полей
 	if (String::IsNullOrEmpty(txtFilePath->Text)) {
-		lblStatus->Text = "Выберите PDF-файл!";
+		MessageBox::Show("Пожалуйста, выберите PDF файл книги", "Ошибка",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
-	} 
+	}
+
+	if (String::IsNullOrEmpty(txtCoverImagePath->Text)) {
+		MessageBox::Show("Пожалуйста, выберите обложку книги", "Ошибка",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
+	if (String::IsNullOrEmpty(txtTitle->Text)) {
+		MessageBox::Show("Пожалуйста, введите название книги", "Ошибка",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+
 	try {
-		// 1. Чтение данных из файла PDF
-		String^ filePath = txtFilePath->Text;
-		std::ifstream fileStream;
+		// Чтение данных файлов в байтовые массивы
+		array<Byte>^ pdfData = File::ReadAllBytes(txtFilePath->Text);
+		array<Byte>^ coverData = File::ReadAllBytes(txtCoverImagePath->Text);
+		String^ fileName = Path::GetFileName(txtFilePath->Text);
+		String^ title = txtTitle->Text;
 
-		marshal_context context;
-		std::string file_path_utf8 = context.marshal_as<std::string>(filePath);
-
-		fileStream.open(file_path_utf8, std::ios::binary);
-		if (!fileStream.is_open())
-		{
-			lblStatus->Text = "Не удалось открыть файл!";
-			return;
-		}
-		fileStream.seekg(0, std::ios::end);
-		int length = fileStream.tellg();
-		fileStream.seekg(0, std::ios::beg);
-
-		char* buffer = new char[length];
-		fileStream.read(buffer, length);
-		fileStream.close();
-		array<Byte>^ pdfData = gcnew array<Byte>(length);
-		for (int i = 0; i < length; i++) {
-			pdfData[i] = buffer[i];
-		}
-		delete[] buffer;
-
-
-		// 2. Сохранение в базу данных SQLite
+		// Подключение к SQLite базе данных
 		sqlite3* db;
-		int rc = sqlite3_open("bd_MyBooks.db", &db);
+		String^ dbPath = "LibraryDatabase.db";
+		int rc = sqlite3_open(msclr::interop::marshal_as<std::string>(dbPath).c_str(), &db);
+
 		if (rc != SQLITE_OK) {
-			lblStatus->Text = "Не удалось открыть базу данных: " + marshal_as<String^>(sqlite3_errmsg(db));
-			sqlite3_close(db);
-			return;
+			throw gcnew Exception("Не удалось открыть базу данных: " + gcnew String(sqlite3_errmsg(db)));
 		}
+
+		// Создание таблицы, если она не существует
+		const char* createTableSQL = "CREATE TABLE IF NOT EXISTS Books ("
+			"Id INTEGER PRIMARY KEY AUTOINCREMENT, "
+			"Title TEXT NOT NULL, "
+			"PdfData BLOB NOT NULL, "
+			"CoverImage BLOB NOT NULL, "
+			"FileName TEXT NOT NULL, "
+			"UploadDate TEXT DEFAULT CURRENT_TIMESTAMP);";
+
+		char* errMsg = nullptr;
+		rc = sqlite3_exec(db, createTableSQL, nullptr, nullptr, &errMsg);
+		if (rc != SQLITE_OK) {
+			String^ error = gcnew String(errMsg);
+			sqlite3_free(errMsg);
+			sqlite3_close(db);
+			throw gcnew Exception("Ошибка при создании таблицы: " + error);
+		}
+
+		// Подготовка SQL запроса для вставки данных
+		sqlite3_stmt* stmt;
+		const char* insertSQL = "INSERT INTO Books (Title, PdfData, CoverImage, FileName) VALUES (?, ?, ?, ?)";
+
+		rc = sqlite3_prepare_v2(db, insertSQL, -1, &stmt, nullptr);
+		if (rc != SQLITE_OK) {
+			sqlite3_close(db);
+			throw gcnew Exception("Ошибка подготовки SQL запроса: " + gcnew String(sqlite3_errmsg(db)));
+		}
+
+		// Привязка параметров
+		// Название книги
+		std::string titleStr = msclr::interop::marshal_as<std::string>(title);
+		sqlite3_bind_text(stmt, 1, titleStr.c_str(), -1, SQLITE_TRANSIENT);
+
+		// PDF данные
+		pin_ptr<unsigned char> pdfPtr = &pdfData[0];
+		sqlite3_bind_blob(stmt, 2, pdfPtr, pdfData->Length, SQLITE_TRANSIENT);
+
+		// Обложка
+		pin_ptr<unsigned char> coverPtr = &coverData[0];
+		sqlite3_bind_blob(stmt, 3, coverPtr, coverData->Length, SQLITE_TRANSIENT);
+
+		// Имя файла
+		std::string fileNameStr = msclr::interop::marshal_as<std::string>(fileName);
+		sqlite3_bind_text(stmt, 4, fileNameStr.c_str(), -1, SQLITE_TRANSIENT);
+
+		// Выполнение запроса
+		rc = sqlite3_step(stmt);
+		if (rc != SQLITE_DONE) {
+			String^ error = gcnew String(sqlite3_errmsg(db));
+			sqlite3_finalize(stmt);
+			sqlite3_close(db);
+			throw gcnew Exception("Ошибка при выполнении запроса: " + error);
+		}
+
+		// Очистка
+		sqlite3_finalize(stmt);
+		sqlite3_close(db);
+
+		// Сообщение об успехе
+		MessageBox::Show("Книга успешно загружена в базу данных!", "Успех",
+			MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+		// Очистка формы
+		txtFilePath->Text = "";
+		txtCoverImagePath->Text = "";
+		txtTitle->Text = "";
+		pictureBoxCover->Image = nullptr;
 	}
 	catch (Exception^ ex) {
-		lblStatus->Text = "Ошибка: " + ex->Message;
+		MessageBox::Show("Ошибка при загрузке книги: " + ex->Message, "Ошибка",
+			MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
-}
+	}
 };
 }
